@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vinceric Dancel | Personal Website</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap");
+
+      :root {
+        --primary: #0a0a1a;
+        --secondary: #1a1a2e;
+        --accent: #d4af37;
+        --accent-light: #f4d03f;
+        --light: #f5f5f7;
+        --text: #e6e6e6;
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+        --gradient-accent: linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-light)
+        );
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: var(--gradient-primary);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 0;
+        position: relative;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--light);
+        letter-spacing: 3px;
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+      }
+
+      .logo span {
+        color: var(--accent);
+        position: relative;
+      }
+
+      .logo span::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gradient-accent);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover span::after {
+        transform: scaleX(1);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gradient-accent);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .btn {
+        background: transparent;
+        border: 2px solid var(--accent);
+        color: var(--accent);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-accent);
+        z-index: -1;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s ease;
+      }
+
+      .btn:hover {
+        color: var(--primary);
+        border-color: transparent;
+      }
+
+      .btn:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .btn-primary {
+        background: var(--gradient-accent);
+        color: var(--primary);
+        border: none;
+      }
+
+      .btn-primary::before {
+        background: var(--gradient-primary);
+      }
+
+      .btn-primary:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5rem 0;
+        min-height: 90vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        transform: rotate(45deg);
+      }
+
+      .hero-content {
+        flex: 1;
+        padding-right: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4.5rem;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        color: var(--light);
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+      }
+
+      .hero-content h1 span {
+        color: var(--accent);
+        position: relative;
+        display: inline-block;
+      }
+
+      .hero-content h1 span::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: var(--gradient-accent);
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        font-weight: 300;
+        line-height: 1.8;
+        max-width: 600px;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .orb {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          var(--accent),
+          transparent 70%
+        );
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 0 0 100px rgba(212, 175, 55, 0.4);
+        animation: float 8s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      .pulse {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: transparent;
+        border: 2px solid var(--accent);
+        opacity: 0;
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1.8);
+          opacity: 0;
+        }
+      }
+
+      .features {
+        padding: 8rem 0;
+        background: rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .features::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+        color: var(--light);
+        position: relative;
+      }
+
+      .section-title span {
+        color: var(--accent);
+        position: relative;
+      }
+
+      .section-title span::after {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: var(--gradient-accent);
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 3rem;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-accent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(212, 175, 55, 0.3);
+      }
+
+      .feature-card:hover::before {
+        opacity: 0.05;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: var(--accent);
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--light);
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-card p {
+        position: relative;
+        z-index: 1;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .animated-icon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 2rem;
+      }
+
+      .circle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        opacity: 0.7;
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .dot {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px var(--accent);
+      }
+
+      .wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        opacity: 0;
+        animation: wave 3s infinite;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: scale(0.5);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.8);
+          opacity: 0;
+        }
+      }
+
+      .testimonials {
+        padding: 8rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .testimonial-slider {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        position: relative;
+      }
+
+      .testimonial-slider::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-accent);
+        opacity: 0.05;
+        border-radius: 20px;
+      }
+
+      .testimonial {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .testimonial p {
+        font-size: 1.4rem;
+        font-style: italic;
+        margin-bottom: 2.5rem;
+        position: relative;
+        line-height: 1.8;
+      }
+
+      .testimonial p::before,
+      .testimonial p::after {
+        content: '"';
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        color: var(--accent);
+        opacity: 0.3;
+        position: absolute;
+      }
+
+      .testimonial p::before {
+        top: -30px;
+        left: -20px;
+      }
+
+      .testimonial p::after {
+        bottom: -60px;
+        right: -20px;
+      }
+
+      .client {
+        font-weight: 600;
+        color: var(--light);
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .client-title {
+        font-size: 1rem;
+        color: var(--accent);
+      }
+
+      .pricing {
+        padding: 8rem 0;
+        background: rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 3rem;
+      }
+
+      .pricing-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 4rem 3rem;
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-accent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(212, 175, 55, 0.3);
+      }
+
+      .pricing-card:hover::before {
+        opacity: 0.05;
+      }
+
+      .pricing-card.featured {
+        border: 2px solid var(--accent);
+        transform: scale(1.05);
+      }
+
+      .pricing-card.featured::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--gradient-accent);
+      }
+
+      .pricing-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--light);
+        position: relative;
+        z-index: 1;
+      }
+
+      .pricing-card .price {
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 2.5rem;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      }
+
+      .pricing-card .price span {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--text);
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        margin-bottom: 2.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .pricing-card ul li {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+      }
+
+      .cta {
+        padding: 8rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .cta h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        color: var(--light);
+        position: relative;
+      }
+
+      .cta h2::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 8px;
+        background: var(--gradient-accent);
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .cta p {
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      footer {
+        background: var(--primary);
+        padding: 6rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--light);
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      }
+
+      .footer-logo span {
+        color: var(--accent);
+      }
+
+      .footer-links h4 {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        color: var(--light);
+        position: relative;
+      }
+
+      .footer-links h4::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--gradient-accent);
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--text);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        position: relative;
+        padding-left: 0;
+      }
+
+      .footer-links a::before {
+        content: "→";
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        color: var(--accent);
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+        padding-left: 20px;
+      }
+
+      .footer-links a:hover::before {
+        opacity: 1;
+        left: 0;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 3rem 0;
+        }
+
+        .hero-content {
+          padding-right: 0;
+          margin-bottom: 4rem;
+        }
+
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+
+        .orb {
+          width: 300px;
+          height: 300px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .features-grid,
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-card.featured {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo"><span>V</span>INCERIC</div>
+          <div class="nav-links">
+            <a href="#about">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <button class="btn">Get in Touch</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to <span>Vinceric Dancel's</span> World</h1>
+          <p>
+            A passionate individual dedicated to creating innovative solutions
+            and delivering excellence in every project. Explore my journey,
+            skills, and achievements in the world of technology and creativity.
+          </p>
+          <button class="btn btn-primary">Explore My Work</button>
+        </div>
+        <div class="hero-image">
+          <div class="orb">
+            <div class="pulse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="about">
+      <div class="container">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Natural Conversations</h3>
+            <p>
+              Engage in fluid, natural conversations with AURA's advanced
+              language processing capabilities. It understands context, nuance,
+              and personal preferences.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Intelligent Automation</h3>
+            <p>
+              Automate complex tasks with AURA's sophisticated AI. From
+              scheduling meetings to managing projects, AURA handles it all with
+              precision and elegance.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Personalized Experience</h3>
+            <p>
+              AURA learns your preferences and adapts to your unique needs,
+              providing increasingly personalized assistance over time.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Seamless Integration</h3>
+            <p>
+              Integrate AURA with your existing digital ecosystem. Compatible
+              with over 200 applications and services for a unified experience.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Advanced Analytics</h3>
+            <p>
+              Gain valuable insights with AURA's data analysis capabilities.
+              Transform complex information into actionable knowledge.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="animated-icon">
+              <div class="circle"></div>
+              <div class="dot"></div>
+              <div class="wave"></div>
+            </div>
+            <h3>Privacy Focused</h3>
+            <p>
+              Your data remains yours with AURA's state-of-the-art encryption
+              and privacy-first approach to virtual assistance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="skills">
+      <div class="container">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <div class="testimonial-slider">
+          <div class="testimonial">
+            <p>
+              AURA has transformed how I manage my executive duties. The
+              intuitive interface and powerful capabilities have saved me
+              countless hours and elevated my productivity to new heights.
+            </p>
+            <div class="client">Alexandra Chen</div>
+            <div class="client-title">CEO, Innovatech Solutions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="projects">
+      <div class="container">
+        <h2 class="section-title">My <span>Projects</span></h2>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Essential</h3>
+            <div class="price">$149<span>/month</span></div>
+            <ul>
+              <li>Personal AI Assistant</li>
+              <li>Basic Task Automation</li>
+              <li>Email Management</li>
+              <li>Calendar Scheduling</li>
+              <li>24/7 Availability</li>
+            </ul>
+            <button class="btn">Select Plan</button>
+          </div>
+          <div class="pricing-card featured">
+            <h3>Professional</h3>
+            <div class="price">$299<span>/month</span></div>
+            <ul>
+              <li>All Essential Features</li>
+              <li>Advanced Task Automation</li>
+              <li>Project Management</li>
+              <li>Data Analysis</li>
+              <li>Custom Integrations</li>
+              <li>Priority Support</li>
+            </ul>
+            <button class="btn btn-primary">Select Plan</button>
+          </div>
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">$649<span>/month</span></div>
+            <ul>
+              <li>All Professional Features</li>
+              <li>Multiple User Access</li>
+              <li>Enhanced Security Protocols</li>
+              <li>Custom AI Training</li>
+              <li>Dedicated Account Manager</li>
+              <li>Custom Solutions Development</li>
+            </ul>
+            <button class="btn">Contact Sales</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <h2>Let's Work Together</h2>
+        <p>
+          I'm always open to new opportunities and collaborations. Let's create
+          something amazing together.
+        </p>
+        <button class="btn btn-primary">Contact Me</button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="footer-logo"><span>V</span>INCERIC</div>
+            <p>
+              Creating innovative solutions and delivering excellence in every
+              project.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Partners</a></li>
+              <li><a href="#">API</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Data Protection</a></li>
+              <li><a href="#">Compliance</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2024 Vinceric Dancel. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
