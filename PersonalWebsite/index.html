@@ -131,22 +131,106 @@
         align-items: center;
         position: relative;
         overflow: hidden;
-        background: radial-gradient(
-            circle at 20% 20%,
-            rgba(199, 34, 188, 0.1) 0%,
-            transparent 50%
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      .cyber-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(199, 34, 188, 0.15) 1px,
+            transparent 1px
           ),
-          radial-gradient(
-            circle at 80% 80%,
-            rgba(129, 28, 217, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 50% 50%,
-            rgba(78, 20, 255, 0.05) 0%,
-            transparent 50%
-          );
-        padding: 4rem 0;
+          linear-gradient(0deg, rgba(78, 20, 255, 0.15) 1px, transparent 1px);
+        background-size: 40px 40px;
+        transform: perspective(500px) rotateX(60deg);
+        transform-origin: top;
+        animation: gridPulse 8s ease-in-out infinite;
+      }
+
+      .neon-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+      }
+
+      .neon-line {
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(199, 34, 188, 0.6),
+          rgba(78, 20, 255, 0.6),
+          transparent
+        );
+        filter: blur(2px);
+        animation: lineFlow 4s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(199, 34, 188, 0.3);
+      }
+
+      .neon-line:nth-child(1) {
+        top: 20%;
+        width: 100%;
+        animation-delay: 0s;
+      }
+      .neon-line:nth-child(2) {
+        top: 40%;
+        width: 80%;
+        left: 10%;
+        animation-delay: -1s;
+      }
+      .neon-line:nth-child(3) {
+        top: 60%;
+        width: 60%;
+        left: 20%;
+        animation-delay: -2s;
+      }
+      .neon-line:nth-child(4) {
+        top: 80%;
+        width: 40%;
+        left: 30%;
+        animation-delay: -3s;
+      }
+
+      @keyframes gridPulse {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: perspective(500px) rotateX(60deg) translateY(0);
+        }
+        50% {
+          opacity: 0.7;
+          transform: perspective(500px) rotateX(60deg) translateY(20px);
+        }
+      }
+
+      @keyframes lineFlow {
+        0%,
+        100% {
+          transform: translateX(-100%) scaleX(0.5);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translateX(0) scaleX(1);
+          opacity: 1;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
       }
 
       .hero::before {
@@ -213,17 +297,14 @@
         background: none;
         box-shadow: none;
         flex-shrink: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
       }
-      .profile-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        display: block;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 4px 32px 0 rgba(78, 20, 255, 0.1);
+
+      .profile-image:hover {
+        transform: scale(1.02);
       }
+
       .profile-image::before {
         content: "";
         position: absolute;
@@ -243,7 +324,16 @@
         filter: blur(0px);
         opacity: 0.85;
         animation: borderSpin 2.5s linear infinite;
+        transition: all 0.3s ease;
       }
+
+      .profile-image:hover::before {
+        animation: borderSpin 1s linear infinite;
+        opacity: 1;
+        filter: blur(2px);
+        transform: scale(1.1);
+      }
+
       .profile-image::after {
         content: "";
         position: absolute;
@@ -271,14 +361,39 @@
         opacity: 0.8;
         animation: cyberpunkGlow 4s ease-in-out infinite;
         filter: blur(8px);
+        transition: all 0.3s ease;
+      }
+
+      .profile-image:hover::after {
+        animation: cyberpunkGlow 2s ease-in-out infinite;
+        opacity: 1;
+        filter: blur(12px);
+        transform: scale(1.15);
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 4px 32px 0 rgba(78, 20, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .profile-image:hover img {
+        filter: brightness(1.2) contrast(1.1);
+        transform: scale(1.05);
       }
 
       @keyframes borderSpin {
         0% {
-          transform: rotate(0deg);
+          transform: rotate(0deg) scale(1);
         }
         100% {
-          transform: rotate(360deg);
+          transform: rotate(360deg) scale(1);
         }
       }
 
@@ -286,13 +401,11 @@
         0%,
         100% {
           background-position: 0% 50%;
-          transform: rotate(0deg) scale(1);
-          opacity: 0.8;
+          transform: scale(1);
         }
         50% {
           background-position: 100% 50%;
-          transform: rotate(180deg) scale(1.05);
-          opacity: 1;
+          transform: scale(1.05);
         }
       }
 
@@ -405,6 +518,9 @@
       .hero-cta {
         opacity: 0;
         animation: fadeInUp 1s ease-out 0.9s forwards;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
       }
 
       .cta-button {
@@ -426,11 +542,45 @@
         border-color: rgba(255, 255, 255, 0.4);
       }
 
+      /* Resume Button Styles */
+      .resume-button {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(78, 20, 255, 0.2) 0%,
+          rgba(129, 28, 217, 0.2) 100%
+        );
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(78, 20, 255, 0.4);
+        box-shadow: 0 10px 20px rgba(78, 20, 255, 0.2);
+      }
+
+      .resume-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(78, 20, 255, 0.3);
+        border-color: rgba(78, 20, 255, 0.6);
+        background: linear-gradient(
+          135deg,
+          rgba(78, 20, 255, 0.3) 0%,
+          rgba(129, 28, 217, 0.3) 100%
+        );
+      }
+
       /* Section Styling */
       .section {
         padding: 8rem 0;
         position: relative;
         overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.1) 0%,
+          rgba(78, 20, 255, 0.1) 100%
+        );
       }
 
       .section::before {
@@ -441,22 +591,94 @@
         width: 100%;
         height: 100%;
         background: radial-gradient(
-            circle at 0% 0%,
+            circle at 20% 20%,
             rgba(199, 34, 188, 0.05) 0%,
             transparent 50%
           ),
           radial-gradient(
-            circle at 100% 100%,
-            rgba(129, 28, 217, 0.05) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 50% 50%,
-            rgba(78, 20, 255, 0.03) 0%,
+            circle at 80% 80%,
+            rgba(78, 20, 255, 0.05) 0%,
             transparent 50%
           );
         pointer-events: none;
-        z-index: -1;
+        z-index: 0;
+      }
+
+      .section-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Welcome Section */
+      #welcome-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* Vision & Mission Section */
+      #vision-mission-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* About Me Section */
+      #about-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* Services Section */
+      #services-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* How I Can Help Section */
+      #help-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* Sample Output Section */
+      #sample-output-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* Tools Section */
+      #tools-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
+      }
+
+      /* Contact Section */
+      #contact-section {
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.15) 0%,
+          rgba(78, 20, 255, 0.15) 100%
+        );
       }
 
       /* Add subtle gradient overlay */
@@ -1328,6 +1550,10 @@
           font-size: 1rem;
         }
 
+        .hero-cta {
+          justify-content: center;
+        }
+
         .card,
         .service-card,
         .tool-item,
@@ -1527,7 +1753,8 @@
       }
 
       @keyframes floatTriangle {
-        0%, 100% {
+        0%,
+        100% {
           transform: translate(0, 0) rotate(0deg);
           opacity: 0.1;
         }
@@ -1562,7 +1789,11 @@
 
       .nav-button {
         padding: 0.4rem 0.8rem;
-        background: linear-gradient(135deg, rgba(199, 34, 188, 0.1) 0%, rgba(129, 28, 217, 0.1) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.1) 0%,
+          rgba(129, 28, 217, 0.1) 100%
+        );
         border: 1px solid transparent;
         color: var(--white);
         text-decoration: none;
@@ -1575,15 +1806,23 @@
       }
 
       .nav-button::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: -1px;
         border-radius: 15px;
         padding: 1px;
-        background: linear-gradient(45deg, var(--pink), var(--purple), var(--blue), var(--hot-pink), var(--pink));
+        background: linear-gradient(
+          45deg,
+          var(--pink),
+          var(--purple),
+          var(--blue),
+          var(--hot-pink),
+          var(--pink)
+        );
         background-size: 200% 200%;
         animation: borderAnimation 4s linear infinite;
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
@@ -1602,7 +1841,11 @@
       }
 
       .nav-button:hover {
-        background: linear-gradient(135deg, rgba(199, 34, 188, 0.2) 0%, rgba(129, 28, 217, 0.2) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(199, 34, 188, 0.2) 0%,
+          rgba(129, 28, 217, 0.2) 100%
+        );
         transform: translateY(-1px);
         box-shadow: 0 3px 12px rgba(199, 34, 188, 0.2);
       }
@@ -1649,7 +1892,7 @@
       }
 
       .logo-icon span {
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         color: white;
         font-weight: 700;
         font-size: 1.4rem;
@@ -1661,13 +1904,18 @@
       }
 
       .logo-icon span::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -2px;
         left: 0;
         width: 100%;
         height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.8),
+          transparent
+        );
         animation: scanline 2s linear infinite;
       }
 
@@ -1725,6 +1973,13 @@
 
     <!-- Hero Section -->
     <section class="hero">
+      <div class="cyber-grid"></div>
+      <div class="neon-lines">
+        <div class="neon-line"></div>
+        <div class="neon-line"></div>
+        <div class="neon-line"></div>
+        <div class="neon-line"></div>
+      </div>
       <div class="luxury-container">
         <div class="hero-content">
           <div class="hero-text">
@@ -1737,7 +1992,15 @@
               the details while you focus on growing your business.
             </p>
             <div class="hero-cta">
-              <a href="#contact-section" class="cta-button">Let's Work Together</a>
+              <a href="#contact-section" class="cta-button"
+                >Let's Work Together</a
+              >
+              <a
+                href="https://drive.google.com/file/d/1djfquEGPNggK3541Zjb_9xXwh7u__KtT"
+                class="resume-button"
+                target="_blank"
+                >View Resume</a
+              >
             </div>
           </div>
           <div class="hero-image">
@@ -1889,12 +2152,6 @@
             <p>
               Professional content creation for various platforms and purposes.
             </p>
-            <a
-              href="https://drive.google.com/drive/folders/1GpzrZrGY8C3QWdaZ-dMrwsvTnxRajQLH?usp=drive_link"
-              class="service-link"
-              target="_blank"
-              >View Sample Content</a
-            >
           </div>
         </div>
       </div>
@@ -1946,7 +2203,10 @@
     </section>
 
     <!-- Sample Output Section -->
-    <section class="section sample-output scroll-reveal" id="sample-output-section">
+    <section
+      class="section sample-output scroll-reveal"
+      id="sample-output-section"
+    >
       <div class="triangle-container">
         <div class="triangle triangle-1"></div>
         <div class="triangle triangle-2"></div>
@@ -2008,6 +2268,35 @@
               class="service-link"
               target="_blank"
               >View Figma Sample</a
+            >
+          </div>
+          <div class="service-card scroll-reveal">
+            <div class="service-icon"></div>
+            <h3 class="service-title">Excel Dashboard</h3>
+            <p>
+              Interactive data visualization and business analytics dashboard
+              with real-time metrics and KPI tracking.
+            </p>
+            <a
+              href="https://docs.google.com/spreadsheets/d/1w5_1LYp_di02kbxRTWz23OBFl2kSoNO7/export?format=xlsx"
+              class="service-link"
+              target="_blank"
+              download="Excel_Dashboard.xlsx"
+              >Download Excel Dashboard</a
+            >
+          </div>
+          <div class="service-card scroll-reveal">
+            <div class="service-icon"></div>
+            <h3 class="service-title">Social Media Content Calendar</h3>
+            <p>
+              Comprehensive content planning and scheduling system for managing
+              multi-platform social media campaigns.
+            </p>
+            <a
+              href="https://docs.google.com/spreadsheets/d/1tKI9oMbLU-UCUN8UcZGI7stem2fCn2fG"
+              class="service-link"
+              target="_blank"
+              >View Content Calendar</a
             >
           </div>
         </div>
@@ -2109,7 +2398,7 @@
             </div>
             <div class="contact-item scroll-reveal">
               <h3 style="color: var(--gold); margin-bottom: 1rem"></h3>
-              <p>vincentricdancel@gmail.com</p>
+              <p>vincentdancel692@gmail.com</p>
             </div>
             <div class="contact-item scroll-reveal">
               <h3 style="color: var(--gold); margin-bottom: 1rem"></h3>
@@ -2196,13 +2485,13 @@
       const scrollRevealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            entry.target.classList.add("is-visible");
             scrollRevealObserver.unobserve(entry.target);
           }
         });
       }, observerOptions);
 
-      document.querySelectorAll('.scroll-reveal').forEach((el) => {
+      document.querySelectorAll(".scroll-reveal").forEach((el) => {
         scrollRevealObserver.observe(el);
       });
     </script>
